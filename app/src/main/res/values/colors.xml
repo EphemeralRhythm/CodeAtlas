@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="nav_bar_color">#204b75</color>
+    <color name="screen_color">#011933</color>
+    <color name="screen_register">#60cabd</color>
+    <color name="button_color">#80204b75</color>
+    <color name="transparent">#00000000</color>
+    <color name="cyan">#0970d1</color>
+    <color name="quiz_button_default">#204b75</color>
+    <color name="quiz_button_selected">#524651</color>
+    <color name="quiz_button_wrong">#ab4455</color>
+    <color name="quiz_button_correct">#56753f</color>
+    <color name="disabled">#BB404040</color>
+</resources>

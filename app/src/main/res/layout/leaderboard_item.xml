@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/rectangleForRanks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/rank"
+        android:src="@drawable/rank_and_profile_rectangle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pointsForRanks"
+        android:layout_width="49dp"
+        android:layout_height="22dp"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/signikanegative"
+        android:text="@string/points"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@+id/rectangleForRanks"
+        app:layout_constraintEnd_toEndOf="@+id/rectangleForRanks"
+        app:layout_constraintTop_toTopOf="@+id/rectangleForRanks" />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profilePicture"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="3dp"
+        android:src="@drawable/person"
+        app:layout_constraintStart_toStartOf="@+id/rectangleForRanks"
+        app:layout_constraintTop_toTopOf="@+id/rectangleForRanks" />
+
+    <ImageView
+        android:id="@+id/starsForRanks"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pointsForRanks"
+        app:layout_constraintEnd_toStartOf="@+id/pointsForRanks"
+        app:layout_constraintTop_toTopOf="@+id/pointsForRanks"
+        app:srcCompat="@drawable/star_leaderboard"
+        android:contentDescription="@string/star" />
+
+    <TextView
+        android:id="@+id/rank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/poppinsbold"
+        android:text="@string/_4"
+        android:textColor="#84ebeb"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/rectangleForRanks"
+        app:layout_constraintEnd_toStartOf="@+id/rectangleForRanks"
+        app:layout_constraintTop_toTopOf="@+id/rectangleForRanks" />
+
+    <TextView
+        android:id="@+id/nameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/signikanegative"
+        android:text="Name"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@+id/rectangleForRanks"
+        app:layout_constraintStart_toEndOf="@+id/profilePicture"
+        app:layout_constraintTop_toTopOf="@+id/rectangleForRanks" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

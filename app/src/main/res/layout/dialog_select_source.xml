@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="350dp"
+    android:layout_height="350dp"
+    android:background="@drawable/login_container"
+    android:id="@+id/dialog_select_source">
+
+    <ImageView
+        android:id="@+id/containerSelectSource"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/container" />
+
+
+    <TextView
+        android:id="@+id/selectSourceText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/signikanegative"
+        android:text="@string/select_source"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/containerSelectSource"
+        app:layout_constraintStart_toStartOf="@+id/containerSelectSource"
+        app:layout_constraintTop_toTopOf="@+id/containerSelectSource" />
+
+    <TextView
+        android:id="@+id/getFromGalleryText"
+        android:layout_width="227dp"
+        android:layout_height="96dp"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/anonymous_pro"
+        android:text="@string/choose_profile_picture_from_gallery"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/galleryImgBtn"
+        app:layout_constraintEnd_toEndOf="@+id/containerSelectSource"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/galleryImgBtn"
+        app:layout_constraintTop_toTopOf="@+id/galleryImgBtn"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/takePhotoImgBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="50dp"
+        android:background="@color/transparent"
+        android:contentDescription="@string/camera"
+        app:layout_constraintStart_toStartOf="@+id/containerSelectSource"
+        app:layout_constraintTop_toBottomOf="@+id/galleryImgBtn"
+        app:srcCompat="@drawable/select_source_add_photo" />
+
+    <ImageButton
+        android:id="@+id/galleryImgBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="35dp"
+        android:background="@color/transparent"
+        app:layout_constraintStart_toStartOf="@+id/containerSelectSource"
+        app:layout_constraintTop_toBottomOf="@+id/selectSourceText"
+        app:srcCompat="@drawable/gallery"
+        android:contentDescription="@string/gallery" />
+
+    <TextView
+        android:id="@+id/takePhotoText"
+        android:layout_width="229dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/anonymous_pro"
+        android:text="@string/take_photo"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/takePhotoImgBtn"
+        app:layout_constraintEnd_toEndOf="@+id/containerSelectSource"
+        app:layout_constraintStart_toEndOf="@+id/takePhotoImgBtn"
+        app:layout_constraintTop_toTopOf="@+id/takePhotoImgBtn" />
+
+    <ImageButton
+        android:id="@+id/closeBtnSelectSource"
+        android:layout_width="65dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/transparent"
+        android:src="@drawable/close_icon"
+        app:layout_constraintStart_toStartOf="@+id/containerSelectSource"
+        app:layout_constraintTop_toTopOf="@+id/containerSelectSource"
+        android:contentDescription="@string/close" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

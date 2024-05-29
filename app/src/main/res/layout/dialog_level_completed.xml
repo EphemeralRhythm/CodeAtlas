@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".DialogLosingLives">
+
+    <ImageView
+        android:id="@+id/containerForLives"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/container"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/dialog_hearts" />
+
+    <ImageButton
+        android:id="@+id/continueButton"
+        android:layout_width="240dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/transparent"
+        android:contentDescription="@string/register"
+        app:layout_constraintBottom_toBottomOf="@+id/containerForLives"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/forgot_password_button" />
+
+    <TextView
+        android:id="@+id/continueText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppinsbold"
+        android:text="Continue"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/continueButton"
+        app:layout_constraintEnd_toEndOf="@+id/continueButton"
+        app:layout_constraintStart_toStartOf="@+id/continueButton"
+        app:layout_constraintTop_toTopOf="@+id/continueButton"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/gemsImg"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="240dp"
+        android:contentDescription="@string/gems"
+        app:layout_constraintStart_toStartOf="@+id/containerForLives"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/gem" />
+
+    <ImageView
+        android:id="@+id/starsImg"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/gems"
+        app:layout_constraintStart_toStartOf="@+id/gemsImg"
+        app:layout_constraintTop_toBottomOf="@+id/gemsImg"
+        app:srcCompat="@drawable/star_leaderboard" />
+
+    <TextView
+        android:id="@+id/timeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/signikanegative"
+        android:text="Lesson Completed"
+        android:textColor="@color/white"
+        android:textSize="27sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/containerForLives" />
+
+
+    <TextView
+        android:id="@+id/diamonds_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="+100"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        app:layout_constraintStart_toEndOf="@+id/gemsImg"
+        app:layout_constraintTop_toTopOf="@+id/gemsImg" />
+
+    <TextView
+        android:id="@+id/stars_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="+100"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        app:layout_constraintStart_toEndOf="@+id/starsImg"
+        app:layout_constraintTop_toTopOf="@+id/starsImg" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

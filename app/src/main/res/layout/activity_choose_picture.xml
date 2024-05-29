@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_choose_picture"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/screen_color"
+    tools:context=".ChoosePicture">
+
+
+    <TextView
+        android:id="@+id/choosePictureText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/poppinsmedium"
+        android:text="@string/choose_profile_picture"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="65dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="32dp"
+        android:contentDescription="@string/back"
+        android:background="@color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back_icon" />
+
+    <Button
+        android:id="@+id/continueBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="35dp"
+        android:backgroundTint="#0970d1"
+        android:drawableEnd="@drawable/next_icon"
+        android:text="@string/Continue"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profilePicture"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="30dp"
+        android:contentDescription="@string/profile_picture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/choosePictureText"
+        android:background="@drawable/choose_picture_circle_for_picture" />
+
+
+
+    <ImageButton
+        android:id="@+id/addProfileBtn"
+        android:layout_width="157dp"
+        android:layout_height="130dp"
+        android:background="@color/transparent"
+        android:contentDescription="@string/add_profile"
+        app:layout_constraintBottom_toBottomOf="@+id/profilePicture"
+        app:layout_constraintEnd_toEndOf="@+id/profilePicture"
+        app:layout_constraintStart_toStartOf="@+id/profilePicture"
+        app:layout_constraintTop_toTopOf="@+id/profilePicture"
+        app:srcCompat="@drawable/choose_picture_add_image" />
+
+    <TextView
+        android:id="@+id/addBioTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/poppinsmedium"
+        android:text="@string/add_bio"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profilePicture" />
+
+    <EditText
+        android:id="@+id/editTextDescription"
+        android:layout_width="327dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="16dp"
+        android:autofillHints=""
+        android:background="@drawable/register_edittext_background"
+        android:ems="10"
+        android:fontFamily="@font/anonymous_pro"
+        android:hint="@string/description"
+        android:inputType="text"
+        android:paddingStart="22dp"
+        android:paddingEnd="22dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addBioTextView" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

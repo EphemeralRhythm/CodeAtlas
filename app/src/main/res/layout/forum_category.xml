@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+
+    <ImageView
+        android:id="@+id/fillColor"
+        android:layout_width="102dp"
+        android:layout_height="144dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:tint="#574747"
+        app:layout_constraintBottom_toBottomOf="@+id/container"
+        app:layout_constraintStart_toStartOf="@+id/container"
+        app:layout_constraintTop_toTopOf="@+id/container"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/rectangle_general"
+        tools:ignore="UseAppTint"
+        android:contentDescription="@string/tag" />
+
+    <TextView
+        android:id="@+id/letter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppinsmedium"
+        android:text="@string/ge"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="@+id/fillColor"
+        app:layout_constraintEnd_toEndOf="@+id/fillColor"
+        app:layout_constraintStart_toStartOf="@+id/container"
+        app:layout_constraintTop_toTopOf="@+id/fillColor" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="230dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppinsmedium"
+        android:text="@string/general"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toEndOf="@+id/fillColor"
+        app:layout_constraintTop_toTopOf="@+id/container" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="247dp"
+        android:layout_height="81dp"
+        android:layout_marginStart="5dp"
+        android:fontFamily="@font/poppinsmedium"
+        android:text="@string/start_a_discussion_or_ask_a_question"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/fillColor"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <ImageButton
+        android:id="@+id/container"
+        android:layout_width="360dp"
+        android:layout_height="150dp"
+        android:background="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/for_forums_rectangle"
+        android:contentDescription="@string/type" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/rectPost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/rectangle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/for_forums_rectangle" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profilePicture"
+        android:layout_width="54dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:contentDescription="@string/profile_picture"
+        android:src="@drawable/small_profile_picture"
+        app:layout_constraintStart_toStartOf="@+id/rectPost"
+        app:layout_constraintTop_toTopOf="@+id/rectPost" />
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="270dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/poppinsmedium"
+        android:text="@string/hi_there_and_welcome_at_code_atlas_we_ve_rallied_behind_the"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@+id/rectPost"
+        app:layout_constraintStart_toStartOf="@+id/authorUsername"
+        app:layout_constraintTop_toBottomOf="@+id/authorUsername"
+        app:layout_constraintVertical_bias="0.071" />
+
+    <TextView
+        android:id="@+id/authorUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/poppinsregular"
+        android:text="@string/author_username"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/rectPost"
+        app:layout_constraintTop_toTopOf="@+id/rectPost" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

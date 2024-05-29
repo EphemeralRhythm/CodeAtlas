@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <!-- Fill color -->
+    <solid android:color="#00b1b2b5" />
+
+    <!-- Stroke color and width -->
+    <stroke
+        android:width="8dp"
+        android:color="#60ffffff" />
+
+    <!-- Size of the shape (size here ensures it appears correctly as an ellipse) -->
+    <size
+        android:width="80dp"
+        android:height="80dp" />
+</shape>

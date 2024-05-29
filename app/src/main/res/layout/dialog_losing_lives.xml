@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".DialogLosingLives">
+
+    <ImageView
+        android:id="@+id/containerForLives"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/container"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/dialog_hearts" />
+
+    <TextView
+        android:id="@+id/nextHeartInText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/signikanegative"
+        android:text="@string/next_heart_in"
+        android:textColor="@color/white"
+        android:textSize="27sp"
+        app:layout_constraintEnd_toEndOf="@+id/containerForLives"
+        app:layout_constraintStart_toStartOf="@+id/containerForLives"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/timeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/signikanegative"
+        android:text="@string/_00_20_00"
+        android:textColor="@color/white"
+        android:textSize="27sp"
+        app:layout_constraintEnd_toEndOf="@+id/nextHeartInText"
+        app:layout_constraintHorizontal_bias="0.456"
+        app:layout_constraintStart_toStartOf="@+id/nextHeartInText"
+        app:layout_constraintTop_toBottomOf="@+id/nextHeartInText" />
+
+    <TextView
+        android:id="@+id/ranOfHeartsDiscription"
+        android:layout_width="332dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/anonymous_pro"
+        android:text="@string/you_ran_out_of_hearts_to_solve_exercises_you_need_at_least_1_heart"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/containerForLives"
+        app:layout_constraintStart_toStartOf="@+id/containerForLives"
+        app:layout_constraintTop_toBottomOf="@+id/timeText" />
+
+    <ImageView
+        android:id="@+id/containerRefilling"
+        android:layout_width="147dp"
+        android:layout_height="149dp"
+        android:contentDescription="@string/container_for_refilling"
+        app:layout_constraintBottom_toBottomOf="@+id/containerForLives"
+        app:layout_constraintEnd_toEndOf="@+id/containerForLives"
+        app:layout_constraintStart_toStartOf="@+id/containerForLives"
+        app:layout_constraintTop_toBottomOf="@+id/ranOfHeartsDiscription"
+        app:srcCompat="@drawable/refill_lives_rectangle" />
+
+    <LinearLayout
+        android:id="@+id/hearts_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/containerForLives"
+        app:layout_constraintStart_toStartOf="@+id/containerForLives"
+        app:layout_constraintTop_toTopOf="@+id/containerForLives">
+
+
+        <ImageView
+            android:id="@+id/heart1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/heart_1"
+            app:srcCompat="@drawable/heart_full" />
+
+        <ImageView
+            android:id="@+id/hear2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/heart_2"
+            app:srcCompat="@drawable/heart_full" />
+
+        <ImageView
+            android:id="@+id/hear3"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/heart_3"
+            app:srcCompat="@drawable/heart_full" />
+
+        <ImageView
+            android:id="@+id/hear4"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/heart_4"
+            app:srcCompat="@drawable/heart_full" />
+
+        <ImageView
+            android:id="@+id/heart5"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/heart_5"
+            app:srcCompat="@drawable/heart_full" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/gemsImg"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/gems"
+        app:layout_constraintEnd_toEndOf="@+id/containerRefilling"
+        app:layout_constraintTop_toTopOf="@+id/containerRefilling"
+        app:srcCompat="@drawable/gem" />
+
+    <TextView
+        android:id="@+id/paymentText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/_100"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/gemsImg"
+        app:layout_constraintEnd_toStartOf="@+id/gemsImg"
+        app:layout_constraintTop_toTopOf="@+id/gemsImg" />
+
+    <ImageView
+        android:id="@+id/hearts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/hearts"
+        app:layout_constraintEnd_toEndOf="@+id/containerRefilling"
+        app:layout_constraintStart_toStartOf="@+id/containerRefilling"
+        app:layout_constraintTop_toBottomOf="@+id/paymentText"
+        app:srcCompat="@drawable/hearts_dialog" />
+
+    <Button
+        android:id="@+id/refillBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="#0970d1"
+        android:text="@string/refill"
+        app:layout_constraintBottom_toBottomOf="@+id/containerRefilling"
+        app:layout_constraintEnd_toEndOf="@+id/containerRefilling"
+        app:layout_constraintStart_toStartOf="@+id/containerRefilling"
+        app:layout_constraintTop_toBottomOf="@+id/hearts" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

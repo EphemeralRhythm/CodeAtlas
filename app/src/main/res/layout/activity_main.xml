@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RoadmapActivity"
+    android:background="@color/screen_color">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/lives"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/button_color"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
+            android:text="@string/number_lives_btn"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/white"
+            android:textSize="@dimen/value_size" />
+
+        <Button
+            android:id="@+id/gems"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/button_color"
+            android:paddingStart="25dp"
+            android:paddingEnd="15dp"
+            android:text="@string/num_gems_btn"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/white"
+            android:textSize="@dimen/value_size" />
+
+        <Button
+            android:id="@+id/xp"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/button_color"
+            android:paddingStart="25dp"
+            android:paddingEnd="15dp"
+            android:text="@string/num_xp_btn"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/white"
+            android:textSize="@dimen/value_size" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/rectangle_roadmap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/rectangle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/rectangle_roadmap" />
+
+        <ImageView
+            android:id="@+id/rectangleImageLessonTag"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/rectangle_for_chapter_tag"
+            android:src="@drawable/rec_for_name_chap"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/rectangle_roadmap" />
+
+        <TextView
+            android:id="@+id/lessonTagText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="60dp"
+            android:fontFamily="@font/ke_ania_one"
+            android:text="@string/mathematics"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="@+id/rectangleImageLessonTag"
+            app:layout_constraintStart_toEndOf="@+id/listIcon2"
+            app:layout_constraintTop_toTopOf="@+id/rectangleImageLessonTag" />
+
+        <ImageButton
+            android:id="@+id/listIcon2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="6dp"
+            android:background="@color/transparent"
+            android:contentDescription="@string/list"
+            app:layout_constraintStart_toStartOf="@+id/rectangleImageLessonTag"
+            app:layout_constraintTop_toTopOf="@+id/rectangleImageLessonTag"
+            app:srcCompat="@drawable/list_icon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:nestedScrollingEnabled="false"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp">
+
+                <ImageView
+                    android:id="@+id/rectangleImageChapterName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/rectangle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/for_chapter_name" />
+
+                <ImageView
+                    android:id="@+id/ellipseImagePercent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/ellipse"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/rectangleImageChapterName"
+                    app:layout_constraintStart_toEndOf="@+id/chapterNameText"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/roadmap_ellipse" />
+
+                <TextView
+                    android:id="@+id/percentText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:fontFamily="@font/ke_ania_one"
+                    android:text="00%"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/ellipseImagePercent"
+                    app:layout_constraintEnd_toEndOf="@+id/ellipseImagePercent"
+                    app:layout_constraintStart_toStartOf="@+id/ellipseImagePercent" />
+
+                <TextView
+                    android:id="@+id/chapterNameText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:fontFamily="@font/ke_ania_one"
+                    android:maxWidth="270dp"
+                    android:text="@string/number_theory"
+                    android:textColor="@color/white"
+                    android:textSize="35sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/rectangleImageChapterName"
+                    app:layout_constraintStart_toStartOf="@+id/rectangleImageChapterName"
+                    app:layout_constraintTop_toTopOf="@+id/rectangleImageChapterName" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/levelsView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="40dp"
+                android:isScrollContainer="false"
+                android:nestedScrollingEnabled="false" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/events_image"/>
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/events_image" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <include
+        android:id="@+id/include_nav_bar"
+        layout="@layout/navbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/eventBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/threads_circle_for_add_button"
+        android:src="@drawable/events_image"
+        app:layout_constraintBottom_toTopOf="@+id/include_nav_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/events" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

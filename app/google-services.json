@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1068643848940",
+    "firebase_url": "https://code-atlas-0-default-rtdb.firebaseio.com",
+    "project_id": "code-atlas-0",
+    "storage_bucket": "code-atlas-0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1068643848940:android:1997e96871734da47e4bc9",
+        "android_client_info": {
+          "package_name": "com.example.codeatlas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDi8WZ1edK0LaaJ83l0wDB-TtTfF8Fs6k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
