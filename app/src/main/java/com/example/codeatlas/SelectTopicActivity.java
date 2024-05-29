@@ -51,7 +51,7 @@ public class SelectTopicActivity extends AppCompatActivity {
         track = prefs.getString("track", "Getting Started");
 
         initLayoutComponents();
-        firestoreHelper.fetchTopicsForTrack("track", SelectTopicActivity.this::displayTopics);
+        firestoreHelper.fetchTopicsForTrack(track, SelectTopicActivity.this::displayTopics);
     }
 
     private void initLayoutComponents(){

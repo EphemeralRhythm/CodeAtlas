@@ -117,6 +117,14 @@ public class RoadmapActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        topicImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RoadmapActivity.this, SelectTopicActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void fetchTopicData(String trackName, String topicName) {
