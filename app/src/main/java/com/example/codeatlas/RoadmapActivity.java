@@ -168,27 +168,6 @@ public class RoadmapActivity extends AppCompatActivity {
         });
     }
 
-    private void fetchPagesForLevel(DocumentReference levelRef, Level level, ArrayList<Level> levels, int totalLevels) {
-        levelRef.collection("pages").get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                for (QueryDocumentSnapshot pageDoc : task.getResult()) {
-                    int pageNumber = Integer.parseInt(pageDoc.getId());
-
-                    Map<String, Object> mp =  pageDoc.getData();
-                    Page page = new Page();
-                    page.setIndex(pageNumber);
-                    page.setType(Math.toIntExact((Long) mp.get("type")));
-                    page.setContent((String) mp.get("content"));
-
-                    level.pages.add(page);
-                }
-                levels.add(level);
-
-                Log.d("levels", "Added a new level");
-            } else {
-            }
-        });
-    }
 
     public void updateUI(){
         RecyclerView mapView = findViewById(R.id.levelsView);
@@ -305,98 +284,11 @@ public class RoadmapActivity extends AppCompatActivity {
                 return;
             }
 
-            DocumentReference pageRef = db.collection("tracks")
-                    .document(track)
-                    .collection("topics")
-                    .document(topic)
-                    .collection("levels")
-                    .document(String.valueOf(position + 1))
-                    .collection("pages")
-                    .document("1");
-
-            pageRef.get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-
-                    if(document.exists()){
-                        Intent intent;
-                        int type = Math.toIntExact((Long) document.getLong("type"));
-                        if(type == Page.INFO){
-                            intent = new Intent(RoadmapActivity.this, InfoPageActivity.class);
-                        }
-                        else{
-                            intent = new Intent(RoadmapActivity.this, QuizActivity.class);
-                        }
-
-
-                        ArrayList<User> users = new ArrayList<>();
-                        db.collection("users")
-                                .get()
-                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                        if (task.isSuccessful()) {
-                                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                                Map<String, Object> mp = document.getData();
-                                                User user = new User();
-                                                user.setId(document.getId());
-                                                user.setUsername((String) mp.get("username"));
-                                                user.setStars((Long) mp.get("stars"));
-                                                user.setHearts((Long) mp.get("hearts"));
-
-                                                users.add(user);
-                                            }
-
-                                            Collections.sort(users, new Comparator<User>() {
-                                                @Override
-                                                public int compare(User u1, User u2) {
-                                                    return Long.compare(u2.getStars(), u1.getStars());
-                                                }
-                                            });
-
-                                            mAuth = FirebaseAuth.getInstance();
-                                            String email = mAuth.getCurrentUser().getUid();
-                                            int rank = -1;
-                                            int stars = -1;
-                                            int hearts = -1;
-
-                                            for(int i = 0; i < users.size(); i++){
-                                                if(users.get(i).getId().equals(email)){
-                                                    rank = i + 1;
-                                                    stars = Math.toIntExact(users.get(i).getStars());
-                                                    hearts = Math.toIntExact(users.get(i).getHearts());
-
-                                                    if(hearts == 0){
-                                                        DialogLosingLives dialog = new DialogLosingLives();
-                                                        FragmentManager fm = getSupportFragmentManager();
-                                                        dialog.show(fm, "Ran Out of Lives");
-                                                        return;
-                                                    }
-                                                    break;
-                                                }
-                                            }
-
-                                            int total = 0;
-                                            if(type == Page.QUIZ)
-                                                total = 1;
-
-                                            intent.putExtra("track", track);
-                                            intent.putExtra("topic", topic);
-                                            intent.putExtra("level", position + 1);
-                                            intent.putExtra("page", 1);
-                                            intent.putExtra("rank", rank);
-                                            intent.putExtra("stars", stars);
-                                            intent.putExtra("correct_answers", 0);
-                                            intent.putExtra("total_answers", 1);
-
-                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                            startActivity(intent);
-                                        }
-                                    }
-                                });
-                    }
-                }
-            });
+            Intent intent = new Intent(RoadmapActivity.this, LessonActivity.class);
+            intent.putExtra("level", position + 1);
+            intent.putExtra("track", track);
+            intent.putExtra("topic", topic);
+            startActivity(intent);
         }
     };
 }

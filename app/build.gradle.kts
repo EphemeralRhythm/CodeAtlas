@@ -58,9 +58,8 @@ dependencies {
     implementation ("de.hdodenhof:circleimageview:2.1.0")
     implementation ("com.google.android.gms:play-services-location:21.2.0")
     implementation ("com.squareup.picasso:picasso:2.71828")
-    implementation("com.squareup.okhttp3:okhttp:4.9.3")
+    implementation ("com.squareup.okhttp3:okhttp:4.9.3")
+
 
     implementation ("com.airbnb.android:lottie:4.2.2")
-
-
 }

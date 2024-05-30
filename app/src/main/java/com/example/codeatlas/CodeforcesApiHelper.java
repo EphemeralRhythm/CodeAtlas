@@ -38,9 +38,12 @@ public class CodeforcesApiHelper {
             OkHttpClient client = new OkHttpClient();
 
             try {
-                Request request = new Request.Builder().url(API_URL).build();
+                Request request = new Request.Builder().url(API_URL)
+                        .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+                        .build();
                 Response response = client.newCall(request).execute();
                 String responseData = response.body().string();
+                Log.d("codeforcesCallback" , responseData);
 
                 JSONObject jsonObject = new JSONObject(responseData);
                 String status = jsonObject.getString("status");
