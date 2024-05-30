@@ -35,6 +35,9 @@
         android:theme="@style/Theme.CodeAtlas"
         tools:targetApi="31">
         <activity
+            android:name=".LevelCompletedActivity"
+            android:exported="false" />
+        <activity
             android:name=".SelectTopicActivity"
             android:exported="false" />
         <activity
