@@ -30,7 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            Intent intent = new Intent(RegisterActivity.this, ChoosePicture.class);
+            Intent intent = new Intent(RegisterActivity.this, RoadmapActivity.class);
             startActivity(intent);
             finish();
         }
