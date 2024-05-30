@@ -2,14 +2,22 @@ package com.example.codeatlas;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.adservices.topics.Topic;
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,6 +27,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -29,7 +38,12 @@ import kotlin.jvm.internal.CollectionToArray;
 
 public class ArticlesActivity extends BaseActivity {
     ArrayList<ArticleTopic> topics;
+    ArrayList<ArticleTopic> immutableTopicsList;
     FirebaseFirestore db;
+    SearchView searchView;
+    ArticleTopicAdapter adapter;
+    ImageView searchIcon;
+    TextView header;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +52,113 @@ public class ArticlesActivity extends BaseActivity {
         setupBackButton();
 
         db = FirebaseFirestore.getInstance();
+        initLayoutComponents();
+        initSearchIcon();
+        initSearchView();
         fetchTopics();
+    }
+
+    public void initLayoutComponents(){
+        searchView = findViewById(R.id.searchView);
+        searchIcon = findViewById(R.id.articlesSearchIcon);
+        header = findViewById(R.id.headerArticles);
+    }
+
+    public void switchBackButton(){
+        ImageButton backButton = findViewById(R.id.backButton);
+        backButton.setImageResource(R.drawable.close_icon);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchView.clearFocus();
+                searchView.setQuery("", false);
+                searchView.setVisibility(View.GONE);
+                filterTopics("");
+                header.setVisibility(View.VISIBLE);
+                searchIcon.setVisibility(View.VISIBLE);
+                backButton.setImageResource(R.drawable.back_icon);
+                setupBackButton();
+            }
+        });
+    }
+
+    public void initSearchIcon(){
+        searchIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchIcon.setVisibility(View.GONE);
+                header.setVisibility(View.GONE);
+                searchView.setVisibility(View.VISIBLE);
+                switchBackButton();
+            }
+        });
+    }
+    public void initSearchView(){
+        int colorWhite = getResources().getColor(android.R.color.white);
+        int colorHint = getResources().getColor(R.color.nerfed_white);
+        float textSize = 18f;
+
+        Typeface typeface = ResourcesCompat.getFont(this, R.font.poppinsregular);
+
+        try {
+            Field searchAutoCompleteField = SearchView.class.getDeclaredField("mSearchSrcTextView");
+            searchAutoCompleteField.setAccessible(true);
+            TextView searchAutoComplete = (TextView) searchAutoCompleteField.get(searchView);
+
+            searchAutoComplete.setTextColor(colorWhite);
+            searchAutoComplete.setHintTextColor(colorHint);
+            searchAutoComplete.setTextSize(textSize);
+            searchAutoComplete.setTypeface(typeface);
+        }
+
+        catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterTopics(newText);
+                Log.d("newText", newText + ", " + adapter.getItemCount());
+                return true;
+            }
+        });
+    }
+
+    public void filterTopics(String text){
+        topics.clear();
+        for(ArticleTopic topic: immutableTopicsList){
+            if(text == null || text.isEmpty() || topic.getTitle().toLowerCase().contains(text.toLowerCase())){
+                topics.add(topic);
+                continue;
+            }
+
+            ArticleTopic temp = new ArticleTopic();
+            temp.setTitle(topic.getTitle());
+            temp.setArticles(new ArrayList<>());
+
+            for(Article article: topic.getArticles()){
+                if(article.getTitle().toLowerCase().contains(text.toLowerCase())){
+                    temp.getArticles().add(article);
+                }
+            }
+
+            if(!temp.getArticles().isEmpty()){
+                topics.add(temp);
+            }
+        }
+
+        for(ArticleTopic topic: immutableTopicsList){
+            Log.d("newText", topic.getTitle());
+        }
+
+        adapter.notifyDataSetChanged();
     }
 
     public void fetchTopics(){
@@ -79,10 +199,15 @@ public class ArticlesActivity extends BaseActivity {
                                             }
                                         });
 
+                                        immutableTopicsList = new ArrayList<>();
+                                        for(ArticleTopic temp: topics){
+                                            immutableTopicsList.add(temp);
+                                        }
+
                                         RecyclerView topicsRV = findViewById(R.id.topicsList);
                                         RecyclerView.LayoutManager layoutManger = new LinearLayoutManager(ArticlesActivity.this);
                                         topicsRV.setLayoutManager(layoutManger);
-                                        ArticleTopicAdapter adapter = new ArticleTopicAdapter(topics, ArticlesActivity.this);
+                                        adapter = new ArticleTopicAdapter(topics, ArticlesActivity.this);
                                         topicsRV.setAdapter(adapter);
                                     }
                                 } else {

@@ -8,31 +8,30 @@
     tools:context=".ArticlesActivity">
 
 
-
-
     <ImageView
         android:id="@+id/imageNameLayoutArticles"
         android:layout_width="465dp"
-        android:layout_height="89dp"
+        android:layout_height="100dp"
         android:layout_marginTop="-20dp"
+        android:contentDescription="@string/top_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/rectangle_leaderboard"
-        android:contentDescription="@string/top_layout" />
+        app:srcCompat="@drawable/rectangle_leaderboard" />
 
     <ImageButton
-        android:id="@+id/searchArticlesTest"
+        android:id="@+id/articlesSearchIcon"
         android:layout_width="49dp"
         android:layout_height="55dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
         android:background="@color/transparent"
+        android:contentDescription="@string/search"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/imageNameLayoutArticles"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/search_articles"
-        android:contentDescription="@string/search" />
+        app:srcCompat="@drawable/search_articles" />
 
     <ImageButton
         android:id="@+id/backButton"
@@ -57,8 +56,9 @@
         android:text="@string/articles"
         android:textColor="@color/white"
         android:textSize="30sp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/imageNameLayoutArticles"
-        app:layout_constraintEnd_toStartOf="@+id/searchArticlesTest"
+        app:layout_constraintEnd_toStartOf="@+id/articlesSearchIcon"
         app:layout_constraintStart_toEndOf="@+id/backButton"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -72,4 +72,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/headerArticles"
         app:layout_goneMarginTop="30dp" />
+
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/articles_search_rectangle"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search Articles"
+        android:searchHintIcon="@drawable/search_svg"
+        android:searchIcon="@drawable/search_svg"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/backButton"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
