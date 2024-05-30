@@ -49,6 +49,10 @@ dependencies {
 
     implementation ("com.google.guava:guava:29.0-android")
     implementation("androidx.work:work-runtime:2.7.1")
+
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
+    implementation ("androidx.fragment:fragment:1.3.6")
+
     //implementation(libs.json)
     implementation("io.noties.markwon:core:4.6.2")
     implementation ("de.hdodenhof:circleimageview:2.1.0")
