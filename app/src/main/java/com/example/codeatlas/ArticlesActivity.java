@@ -8,12 +8,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.adservices.topics.Topic;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SearchView;
@@ -89,6 +91,12 @@ public class ArticlesActivity extends BaseActivity {
                 searchIcon.setVisibility(View.GONE);
                 header.setVisibility(View.GONE);
                 searchView.setVisibility(View.VISIBLE);
+                searchView.requestFocus();
+
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm != null) {
+                    imm.showSoftInput(searchView, InputMethodManager.SHOW_IMPLICIT);
+                }
                 switchBackButton();
             }
         });
@@ -200,9 +208,7 @@ public class ArticlesActivity extends BaseActivity {
                                         });
 
                                         immutableTopicsList = new ArrayList<>();
-                                        for(ArticleTopic temp: topics){
-                                            immutableTopicsList.add(temp);
-                                        }
+                                        immutableTopicsList.addAll(topics);
 
                                         RecyclerView topicsRV = findViewById(R.id.topicsList);
                                         RecyclerView.LayoutManager layoutManger = new LinearLayoutManager(ArticlesActivity.this);
