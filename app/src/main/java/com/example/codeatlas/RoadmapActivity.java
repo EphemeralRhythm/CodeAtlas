@@ -52,7 +52,7 @@ public class RoadmapActivity extends AppCompatActivity {
     private ArrayList<Level> levels;
     private int completedLevels;
     private ImageView listTrackImageView, topicImageView;
-    private TextView trackTextView, topicTextView, progressView;
+    private TextView trackTextView, topicTextView, progressView, heartsTextView, diamondsTextView, starsTextView;
     private FirestoreHelper firestoreHelper = new FirestoreHelper();
 
 
@@ -95,11 +95,16 @@ public class RoadmapActivity extends AppCompatActivity {
         trackTextView = findViewById(R.id.lessonTagText);
         topicTextView = findViewById(R.id.chapterNameText);
         progressView = findViewById(R.id.percentText);
+
+        heartsTextView = findViewById(R.id.livesTextRoadmap);
+        diamondsTextView = findViewById(R.id.gemsTextRoadmap);
+        starsTextView = findViewById(R.id.xpTextRoadmap);
     }
     public void initUI(){
         trackTextView.setText(track);
         topicTextView.setText(topic);
         updateUserProgress();
+        updateUserStats();
     }
     private void initListeners(){
 
@@ -271,6 +276,22 @@ public class RoadmapActivity extends AppCompatActivity {
 
     public void updateProgressUI(int percentage){
         progressView.setText(percentage + "%");
+    }
+    public void updateUserStats(){
+        String uid = mAuth.getUid();
+        DocumentReference ref = db.collection("users").document(uid);
+        ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                int hearts = Math.toIntExact(task.getResult().getLong("hearts"));
+                int stars = Math.toIntExact(task.getResult().getLong("stars"));
+                int diamonds = Math.toIntExact(task.getResult().getLong("diamonds"));
+
+                heartsTextView.setText(String.valueOf(hearts));
+                diamondsTextView.setText(String.valueOf(diamonds));
+                starsTextView.setText(String.valueOf(stars));
+            }
+        });
     }
 
     private View.OnClickListener listener = new View.OnClickListener() {
