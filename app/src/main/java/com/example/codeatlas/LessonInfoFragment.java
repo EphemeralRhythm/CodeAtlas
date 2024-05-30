@@ -6,47 +6,55 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
-public class LessonMCQFragment extends Fragment {
+import io.noties.markwon.Markwon;
+
+public class LessonInfoFragment extends Fragment {
     private ViewPager2 viewPager;
-    Context context;
     private Page page;
-    ImageButton button;
     TextView contentView;
-    RadioGroup options;
-    public LessonMCQFragment(ViewPager2 viewPager, Context context, Page page){
-        this.context = context;
-        this.page = page;
+    Context context;
+    ImageButton nextButton;
+
+    public LessonInfoFragment(ViewPager2 viewPager, Context context, Page page){
         this.viewPager = viewPager;
+        this.page = page;
+        this.context = context;
     }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.mcq_quiz, container, false);
+        View view =  inflater.inflate(R.layout.information_page, container, false);
 
         initLayoutComponents(view);
         initUI();
+        initNextButton();
         return view;
     }
 
     public void initLayoutComponents(View view){
-        button = view.findViewById(R.id.submitButton);
         contentView = view.findViewById(R.id.contentView);
-        options = view.findViewById(R.id.optionsRadioGroup);
+        nextButton = view.findViewById(R.id.nextButton);
     }
 
     public void initUI(){
-        button.setOnClickListener(new View.OnClickListener() {
+        Markwon markwon = Markwon.builder(context).build();
+        markwon.setMarkdown(contentView, page.getContent().replace("\\n", "\n"));
+    }
+
+    public void initNextButton(){
+        nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LessonAdapter adapter = (LessonAdapter) viewPager.getAdapter();
+
                 adapter.flipPage();
             }
         });

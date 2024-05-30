@@ -2,6 +2,7 @@ package com.example.codeatlas;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -21,7 +23,9 @@ public class LessonActivity extends AppCompatActivity {
 
     ViewPager2 viewPager;
     FirebaseFirestore db;
-    Level level;
+    Level level = new Level();
+    LessonAdapter adapter;
+    TextView heartTextView, rankTextView, starsTextView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,15 +38,29 @@ public class LessonActivity extends AppCompatActivity {
         });
 
         db = FirebaseFirestore.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirestoreHelper firestoreHelper = new FirestoreHelper();
 
         initLayoutComponents();
         initLevelInfo();
-        LessonAdapter adapter = new LessonAdapter(this);
-        viewPager.setAdapter(adapter);
+        firestoreHelper.fetchUserInfo(mAuth.getCurrentUser().getUid(), this::updateUserInfo);
+        firestoreHelper.fetchUserRank(mAuth.getCurrentUser().getUid(), this::updateUserRank);
     }
 
     public void initLayoutComponents(){
         viewPager = findViewById(R.id.viewPager);
+
+        heartTextView = findViewById(R.id.livesText);
+        rankTextView = findViewById(R.id.rankText);
+        starsTextView = findViewById(R.id.xpText);
+    }
+
+    public void updateUserInfo(User user){
+        heartTextView.setText(String.valueOf(user.getHearts()));
+        starsTextView.setText(String.valueOf(user.getStars()));
+    }
+    public void updateUserRank(int rank){
+        rankTextView.setText(String.valueOf(rank));
     }
 
     private void initLevelInfo(){
@@ -81,10 +99,18 @@ public class LessonActivity extends AppCompatActivity {
                     }
 
                     level.pages.add(page);
-                }
 
-                Log.d("levels", "Added a new level");
-            } else {
+                    adapter = new LessonAdapter(this);
+                    adapter.viewPager = viewPager;
+                    adapter.context = this;
+                    adapter.setAllPages(level.pages);
+
+                    ArrayList<Page> curPages = new ArrayList<>();
+                    curPages.add(level.pages.get(0));
+                    adapter.setPages(curPages);
+
+                    viewPager.setAdapter(adapter);
+                }
             }
         });
     }

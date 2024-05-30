@@ -12,12 +12,11 @@
         android:id="@+id/scrollQuestion"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
         android:background="#000e1d"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/questionLayout"
@@ -34,7 +33,7 @@
                 android:fontFamily="@font/poppinsmedium"
                 android:text="TextView"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="22sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -60,120 +59,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/next_quiz" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/livesImQuiz"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/quiz_layout_top_characteristics" />
-
-        <ImageView
-            android:id="@+id/rankImgQuiz"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/xpImgQuiz"
-            app:layout_constraintStart_toEndOf="@+id/livesImQuiz"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/quiz_layout_top_characteristics" />
-
-        <ImageView
-            android:id="@+id/xpImgQuiz"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/quiz_layout_top_characteristics" />
-
-        <TextView
-            android:id="@+id/livesText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="25dp"
-            android:text="5"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            app:layout_constraintBottom_toBottomOf="@+id/livesImQuiz"
-            app:layout_constraintEnd_toEndOf="@+id/livesImQuiz"
-            app:layout_constraintTop_toTopOf="@+id/livesImQuiz" />
-
-        <ImageView
-            android:id="@+id/liveImg"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/livesImQuiz"
-            app:layout_constraintStart_toStartOf="@+id/livesImQuiz"
-            app:layout_constraintTop_toTopOf="@+id/livesImQuiz"
-            app:srcCompat="@drawable/heart_full" />
-
-        <TextView
-            android:id="@+id/rankText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="25dp"
-            android:text="4"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            app:layout_constraintBottom_toBottomOf="@+id/rankImgQuiz"
-            app:layout_constraintEnd_toEndOf="@+id/rankImgQuiz"
-            app:layout_constraintTop_toTopOf="@+id/rankImgQuiz" />
-
-        <ImageView
-            android:id="@+id/rankImg"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-
-            android:layout_marginStart="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/rankImgQuiz"
-            app:layout_constraintTop_toTopOf="@+id/rankImgQuiz"
-            app:srcCompat="@drawable/trophy" />
-
-        <TextView
-            android:id="@+id/xpText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="820"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/xpImgQuiz"
-            app:layout_constraintTop_toTopOf="@+id/xpImgQuiz" />
-
-        <ImageView
-            android:id="@+id/starImg"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginStart="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/xpImgQuiz"
-            app:layout_constraintTop_toTopOf="@+id/xpImgQuiz"
-            app:srcCompat="@drawable/star_profile" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
