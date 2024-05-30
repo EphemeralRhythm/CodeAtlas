@@ -170,7 +170,7 @@ public class ArticlesActivity extends BaseActivity {
     }
 
     public void fetchTopics(){
-        topics = new ArrayList<>();
+        immutableTopicsList = new ArrayList<>();
         CollectionReference collection = db.collection("articles");
 
         collection.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -197,18 +197,18 @@ public class ArticlesActivity extends BaseActivity {
                                         articles.add(article);
                                     }
                                     topic.setArticles(articles);
-                                    topics.add(topic);
+                                    immutableTopicsList.add(topic);
 
-                                    if (topics.size() == pTask.getResult().size() - 1) {
-                                        Collections.sort(topics, new Comparator<ArticleTopic>() {
+                                    if (immutableTopicsList.size() == pTask.getResult().size()) {
+                                        Collections.sort(immutableTopicsList, new Comparator<ArticleTopic>() {
                                             @Override
                                             public int compare(ArticleTopic t1, ArticleTopic t2) {
                                                 return Long.compare(t1.index, t2.index);
                                             }
                                         });
 
-                                        immutableTopicsList = new ArrayList<>();
-                                        immutableTopicsList.addAll(topics);
+                                        topics = new ArrayList<>();
+                                        topics.addAll(immutableTopicsList);
 
                                         RecyclerView topicsRV = findViewById(R.id.topicsList);
                                         RecyclerView.LayoutManager layoutManger = new LinearLayoutManager(ArticlesActivity.this);
