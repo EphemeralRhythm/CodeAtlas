@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#0f4681"
     android:paddingTop="20dp"
-    tools:context=".McqQuizActivity">
+    tools:context=".QuizActivity">
 
 
     <ImageButton
@@ -199,7 +199,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/characteristic_rectangle" />
+            app:srcCompat="@drawable/quiz_layout_top_characteristics" />
 
         <ImageView
             android:id="@+id/rankImgQuiz"
@@ -212,7 +212,7 @@
             app:layout_constraintEnd_toStartOf="@+id/xpImgQuiz"
             app:layout_constraintStart_toEndOf="@+id/livesImQuiz"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/characteristic_rectangle" />
+            app:srcCompat="@drawable/quiz_layout_top_characteristics" />
 
         <ImageView
             android:id="@+id/xpImgQuiz"
@@ -224,7 +224,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/characteristic_rectangle" />
+            app:srcCompat="@drawable/quiz_layout_top_characteristics" />
 
         <TextView
             android:id="@+id/livesText"

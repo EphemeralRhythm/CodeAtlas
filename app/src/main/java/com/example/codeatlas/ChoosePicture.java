@@ -180,6 +180,7 @@ public class ChoosePicture extends BaseActivity{
 
     public void saveProfilePhoto(Bitmap profileImage) {
         chooseImgBtn.setVisibility(View.INVISIBLE);
+        currentUser.setProfilePicture(profileImage);
         profilePicture.setImageBitmap(profileImage);
     }
 

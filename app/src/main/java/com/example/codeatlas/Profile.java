@@ -60,7 +60,7 @@ public class Profile extends BaseActivity {
                 mAuth.signOut();
 
                 Intent intent = new Intent(Profile.this, LoginActivity.class);
-                // don't we need here startActivity(intent)?
+                startActivity(intent);
             }
         });
     }

@@ -51,7 +51,7 @@ public class RoadmapActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private ArrayList<Level> levels;
     private int completedLevels;
-    private ImageView trackImageView, topicImageView;
+    private ImageView listTrackImageView, topicImageView;
     private TextView trackTextView, topicTextView, progressView;
     private FirestoreHelper firestoreHelper = new FirestoreHelper();
 
@@ -90,7 +90,7 @@ public class RoadmapActivity extends AppCompatActivity {
 
     protected void initLayoutComponents(){
         eventBtn = findViewById(R.id.eventBtn);
-        trackImageView = findViewById(R.id.rectangleImageLessonTag);
+        listTrackImageView = findViewById(R.id.listTrackImageView);
         topicImageView = findViewById(R.id.rectangleImageChapterName);
         trackTextView = findViewById(R.id.lessonTagText);
         topicTextView = findViewById(R.id.chapterNameText);
@@ -102,6 +102,7 @@ public class RoadmapActivity extends AppCompatActivity {
         updateUserProgress();
     }
     private void initListeners(){
+
         eventBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,7 +111,7 @@ public class RoadmapActivity extends AppCompatActivity {
             }
         });
 
-        trackImageView.setOnClickListener(new View.OnClickListener() {
+        listTrackImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(RoadmapActivity.this, SelectTrackActivity.class);

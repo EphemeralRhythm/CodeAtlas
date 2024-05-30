@@ -7,7 +7,7 @@
     tools:context=".RoadmapActivity"
     android:background="@color/screen_color">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="65dp"
@@ -15,60 +15,114 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/lives"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="1dp"
+        <ImageView
+            android:id="@+id/livesImgRoadmap"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/button_color"
-            android:paddingStart="25dp"
-            android:paddingEnd="25dp"
-            android:text="@string/number_lives_btn"
-            android:textAlignment="viewEnd"
-            android:textColor="@color/white"
-            android:textSize="@dimen/value_size" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/roadmap_layout_top_characteristics" />
 
-        <Button
-            android:id="@+id/gems"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="1dp"
+
+        <TextView
+            android:id="@+id/livesTextRoadmap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:text="5"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@+id/livesImgRoadmap"
+            app:layout_constraintEnd_toEndOf="@+id/livesImgRoadmap"
+            app:layout_constraintTop_toTopOf="@+id/livesImgRoadmap" />
+
+        <ImageView
+            android:id="@+id/liveImgRoadmap"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/livesImgRoadmap"
+            app:layout_constraintStart_toStartOf="@+id/livesImgRoadmap"
+            app:layout_constraintTop_toTopOf="@+id/livesImgRoadmap"
+            app:srcCompat="@drawable/heart_full" />
+
+
+        <ImageView
+            android:id="@+id/gemsImgRoadmap"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/button_color"
-            android:paddingStart="25dp"
-            android:paddingEnd="15dp"
-            android:text="@string/num_gems_btn"
-            android:textAlignment="viewEnd"
-            android:textColor="@color/white"
-            android:textSize="@dimen/value_size" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/xpImgRoadmap"
+            app:layout_constraintStart_toEndOf="@+id/livesImgRoadmap"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/roadmap_layout_top_characteristics" />
 
-        <Button
-            android:id="@+id/xp"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="1dp"
+        <TextView
+            android:id="@+id/gemsTextRoadmap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:text="200"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@+id/gemsImgRoadmap"
+            app:layout_constraintEnd_toEndOf="@+id/gemsImgRoadmap"
+            app:layout_constraintTop_toTopOf="@+id/gemsImgRoadmap" />
+
+        <ImageView
+            android:id="@+id/gemImgRoadmap"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/gemsImgRoadmap"
+            app:layout_constraintStart_toStartOf="@+id/gemsImgRoadmap"
+            app:layout_constraintTop_toTopOf="@+id/gemsImgRoadmap"
+            app:srcCompat="@drawable/gem" />
+
+        <ImageView
+            android:id="@+id/xpImgRoadmap"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/button_color"
-            android:paddingStart="25dp"
-            android:paddingEnd="15dp"
-            android:text="@string/num_xp_btn"
-            android:textAlignment="viewEnd"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/roadmap_layout_top_characteristics" />
+
+        <TextView
+            android:id="@+id/xpTextRoadmap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="1129"
             android:textColor="@color/white"
-            android:textSize="@dimen/value_size" />
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@+id/xpImgRoadmap"
+            app:layout_constraintEnd_toEndOf="@+id/xpImgRoadmap"
+            app:layout_constraintTop_toTopOf="@+id/xpImgRoadmap" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/starImgRoadmap"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/xpImgRoadmap"
+            app:layout_constraintStart_toStartOf="@+id/xpImgRoadmap"
+            app:layout_constraintTop_toTopOf="@+id/xpImgRoadmap"
+            app:srcCompat="@drawable/star_profile" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -112,11 +166,11 @@
             android:textColor="@color/white"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="@+id/rectangleImageLessonTag"
-            app:layout_constraintStart_toEndOf="@+id/listIcon2"
+            app:layout_constraintStart_toEndOf="@+id/listTrackImageView"
             app:layout_constraintTop_toTopOf="@+id/rectangleImageLessonTag" />
 
         <ImageButton
-            android:id="@+id/listIcon2"
+            android:id="@+id/listTrackImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"

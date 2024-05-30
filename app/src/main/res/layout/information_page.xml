@@ -81,7 +81,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/characteristic_rectangle" />
+            app:srcCompat="@drawable/quiz_layout_top_characteristics" />
 
         <ImageView
             android:id="@+id/rankImgQuiz"
@@ -94,7 +94,7 @@
             app:layout_constraintEnd_toStartOf="@+id/xpImgQuiz"
             app:layout_constraintStart_toEndOf="@+id/livesImQuiz"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/characteristic_rectangle" />
+            app:srcCompat="@drawable/quiz_layout_top_characteristics" />
 
         <ImageView
             android:id="@+id/xpImgQuiz"
@@ -106,7 +106,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/characteristic_rectangle" />
+            app:srcCompat="@drawable/quiz_layout_top_characteristics" />
 
         <TextView
             android:id="@+id/livesText"

@@ -126,7 +126,7 @@ public class RegisterActivity extends AppCompatActivity {
                                                                     Log.w("Firestore", "Error adding user", e);
                                                                 });
 
-                                                        Intent intent = new Intent(RegisterActivity.this, RoadmapActivity.class);
+                                                        Intent intent = new Intent(RegisterActivity.this, ChoosePicture.class);
                                                         startActivity(intent);
                                                         finish();
                                                     }
