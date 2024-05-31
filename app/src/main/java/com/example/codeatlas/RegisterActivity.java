@@ -105,7 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     mp.put("username", username);
                                     mp.put("email", user.getEmail());
                                     mp.put("stars", 0);
-                                    mp.put("diamonds", 0);
+                                    mp.put("diamonds", 100);
                                     mp.put("hearts", 5);
 
 

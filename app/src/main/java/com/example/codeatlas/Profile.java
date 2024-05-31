@@ -123,7 +123,7 @@ public class Profile extends BaseActivity implements DialogAddBio.SaveDescriptio
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                // Toast.makeText(Profile.this, "Failed to load profile picture", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Profile.this, "Failed to load profile picture", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -205,11 +205,22 @@ public class Profile extends BaseActivity implements DialogAddBio.SaveDescriptio
 
     public void saveProfilePhoto(Bitmap profileImage) {
         pfpView.setImageBitmap(profileImage);
+        saveProfileIntoFirebase(profileImage);
     }
-
 
     @Override
     public void saveBio(String description) {
         bioView.setText(description);
+        saveBioIntoFirebase(description);
+    }
+
+    private void saveBioIntoFirebase(String description) {
+        // change the old one if exit into the new one
+        // if not exists put it as a new one
+    }
+
+    private void saveProfileIntoFirebase(Bitmap profileImage) {
+        // change the old one if exit into the new one
+        // if not exists put it as a new one
     }
 }

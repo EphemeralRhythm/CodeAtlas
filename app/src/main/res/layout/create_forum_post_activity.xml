@@ -59,6 +59,8 @@
         android:textColor="@color/white"
         android:textColorHint="#BBFFFFFF"
         android:textSize="22sp"
+        android:nextFocusDown="@id/bodyText"
+        android:imeOptions="actionNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
