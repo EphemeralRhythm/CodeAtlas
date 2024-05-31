@@ -1,6 +1,7 @@
 package com.example.codeatlas;
 
 import android.content.Context;
+import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -70,5 +71,7 @@ public class LessonAdapter extends FragmentStateAdapter {
         }
 
         // win condition
+        LessonActivity activity = (LessonActivity) viewPager.getTag();
+        activity.winLevel();
     }
 }

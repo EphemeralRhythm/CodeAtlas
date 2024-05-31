@@ -1,5 +1,6 @@
 package com.example.codeatlas;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class LessonActivity extends AppCompatActivity {
+    String track, topic;
 
     ViewPager2 viewPager;
     FirebaseFirestore db;
@@ -29,6 +31,8 @@ public class LessonActivity extends AppCompatActivity {
     LessonAdapter adapter;
     public TextView heartTextView, rankTextView, starsTextView;
     public int correctAnswers, totalAnswers;
+    FirestoreHelper firestoreHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +44,13 @@ public class LessonActivity extends AppCompatActivity {
             return insets;
         });
 
+        level.setIndex(getIntent().getExtras().getInt("level"));
+        track = getIntent().getExtras().getString("track");
+        topic = getIntent().getExtras().getString("topic");
+
         db = FirebaseFirestore.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirestoreHelper firestoreHelper = new FirestoreHelper();
+        firestoreHelper = new FirestoreHelper();
 
         initLayoutComponents();
         initLevelInfo();
@@ -125,5 +133,46 @@ public class LessonActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void winCallback(int level){
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        String uid = mAuth.getCurrentUser().getUid();
+
+
+        DocumentReference ref = db.collection("tracks").document(track).collection("topics")
+                .document(topic).collection("users").document(uid);
+
+                Log.d("updatingStuff", this.level.getIndex() + ", " + level);
+                if(this.level.getIndex() > level){
+                   ref.get().addOnCompleteListener(task -> {
+                       Map<String, Object> mp = task.getResult().getData();
+                       mp.put("level", this.level.getIndex());
+
+                       Log.d("updatingStuff", "went here");
+                       ref.update(mp);
+                   });
+                }
+
+        DocumentReference userRef = db.collection("users").document(uid);
+
+
+        userRef.get().addOnCompleteListener(task -> {
+            Map<String, Object> mp = task.getResult().getData();
+            mp.put("stars", (long) mp.get("stars") + 5 * correctAnswers);
+            mp.put("diamonds", (long) mp.get("stars") + 10 * correctAnswers);
+            userRef.update(mp);
+        });
+
+
+        Intent intent = new Intent(LessonActivity.this, LevelCompletedActivity.class);
+        intent.putExtra("correct", correctAnswers);
+        intent.putExtra("total", totalAnswers);
+        startActivity(intent);
+    }
+    public void winLevel(){
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        String uid = mAuth.getCurrentUser().getUid();
+        firestoreHelper.fetchUserProgressForTopic(uid, track, topic, this::winCallback);
     }
 }

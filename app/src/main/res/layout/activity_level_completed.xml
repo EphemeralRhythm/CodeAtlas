@@ -8,4 +8,153 @@
     android:background="@color/screen_color"
     tools:context=".LevelCompletedActivity">
 
+    <ImageButton
+        android:id="@+id/continueButton"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="32dp"
+        android:background="@color/transparent"
+        android:contentDescription="@string/register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/forgot_password_button" />
+
+    <TextView
+        android:id="@+id/continueText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppinsbold"
+        android:text="Continue"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="@+id/continueButton"
+        app:layout_constraintEnd_toEndOf="@+id/continueButton"
+        app:layout_constraintStart_toStartOf="@+id/continueButton"
+        app:layout_constraintTop_toTopOf="@+id/continueButton" />
+
+    <ImageView
+        android:id="@+id/gemsImg"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="320dp"
+        android:contentDescription="@string/gems"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timeText"
+        app:srcCompat="@drawable/gem" />
+
+    <ImageView
+        android:id="@+id/starsImg"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/gems"
+        app:layout_constraintEnd_toEndOf="@+id/gemsImg"
+        app:layout_constraintTop_toBottomOf="@+id/gemsImg"
+        app:srcCompat="@drawable/star_leaderboard" />
+
+    <TextView
+        android:id="@+id/timeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/poppinsbold"
+        android:text="Lesson Completed"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/diamonds_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="+100"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        app:layout_constraintStart_toEndOf="@+id/gemsImg"
+        app:layout_constraintTop_toTopOf="@+id/gemsImg" />
+
+    <TextView
+        android:id="@+id/stars_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="+100"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        app:layout_constraintStart_toEndOf="@+id/starsImg"
+        app:layout_constraintTop_toTopOf="@+id/starsImg" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rounded_rectangle_blue"
+        app:layout_constraintBottom_toTopOf="@+id/continueButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/correctAnswersTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppinsmedium"
+            android:text="Correct Answers"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/wrongAnswers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            android:layout_marginEnd="40dp"
+            android:fontFamily="@font/poppinsmedium"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/wrongAnswersTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="60dp"
+            android:fontFamily="@font/poppinsmedium"
+            android:text="Wrong Answers"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/correctAnswers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="40dp"
+            android:fontFamily="@font/poppinsmedium"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

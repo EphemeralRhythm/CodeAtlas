@@ -11,14 +11,12 @@
         android:id="@+id/forum_titles"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/imageNameLayoutForums" />
 
     <include
         android:id="@+id/include_nav_bar"
@@ -28,29 +26,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextText2"
-        android:layout_width="370dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/forums_search_rectangle"
-        android:drawableStart="@drawable/search_icon"
-        android:drawablePadding="16dp"
-        android:ems="10"
-        android:fontFamily="@font/poppinsmedium"
-        android:textColor="@color/white"
-        android:hint="@string/search"
-        android:inputType="text"
-        android:paddingStart="13dp"
-        android:paddingEnd="22dp"
-        android:textColorHint="@color/white"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.551"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageNameLayoutForums"
-        android:autofillHints="" />
 
     <Toolbar
         android:id="@+id/imageNameLayoutForums"
@@ -91,19 +66,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/backButton"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-    <ImageButton
-        android:id="@+id/imageButton5"
-        android:layout_width="65dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="10dp"
-        android:contentDescription="@string/category"
-        android:background="@color/transparent"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextText2"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText2"
-        app:layout_constraintTop_toTopOf="@+id/editTextText2"
-        app:srcCompat="@drawable/filter" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

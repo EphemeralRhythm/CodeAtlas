@@ -35,11 +35,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageException;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -214,13 +217,58 @@ public class Profile extends BaseActivity implements DialogAddBio.SaveDescriptio
         saveBioIntoFirebase(description);
     }
 
-    private void saveBioIntoFirebase(String description) {
-        // change the old one if exit into the new one
-        // if not exists put it as a new one
+    private void saveBioIntoFirebase(String newBio) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        String userId = mAuth.getCurrentUser().getUid();
+
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("bio", newBio);
+
+
+        db.collection("users").document(userId)
+                .update(updates)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(Profile.this, "Success!", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
     }
 
     private void saveProfileIntoFirebase(Bitmap profileImage) {
-        // change the old one if exit into the new one
-        // if not exists put it as a new one
+        if(profileImage == null)
+            return;
+
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        String uid = mAuth.getCurrentUser().getUid();
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        profileImage.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+        StorageReference profileImagesRef = storageRef.child("profileImages");
+        StorageReference userImageRef = profileImagesRef.child(uid + ".jpg");
+
+        UploadTask uploadTask = userImageRef.putBytes(baos.toByteArray());
+
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                userImageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri downloadUrl) {
+                        Log.d("Firestore", "updated profile picture");
+                    }
+                });
+            }
+        });
     }
 }
