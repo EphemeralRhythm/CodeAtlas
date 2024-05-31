@@ -140,4 +140,13 @@
     <string name="ring">Ring</string>
     <string name="map_platform">Map Platform</string>
     <string name="star_icon">Star Icon</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="about_us">About us</string>
+    <string name="change_username">Change Username</string>
+    <string name="change_password">Change Password</string>
+    <string name="log_out">Log Out</string>
+    <string name="old_password">old password</string>
+    <string name="new_password">new password</string>
+    <string name="new_username">new username</string>
 </resources>

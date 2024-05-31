@@ -1,9 +1,12 @@
 package com.example.codeatlas;
 
+import com.example.codeatlas.R;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,9 +14,13 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,9 +44,11 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class Profile extends BaseActivity {
+public class Profile extends BaseActivity implements DialogAddBio.SaveDescription{
     TextView usernameView, bioView, emailView, codeforcesView, starsView;
     CircleImageView pfpView;
+
+    ImageButton settingsImgBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,17 +61,7 @@ public class Profile extends BaseActivity {
         initUser();
         initPfpView();
 
-        ImageButton settings = findViewById(R.id.settingsButton);
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                mAuth.signOut();
-
-                Intent intent = new Intent(Profile.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+        initButtons();
     }
     public void initLayoutComponents(){
         usernameView = findViewById(R.id.usernameTextView);
@@ -71,6 +70,7 @@ public class Profile extends BaseActivity {
         codeforcesView = findViewById(R.id.codeforcesTextView);
         starsView = findViewById(R.id.starsTextView);
         pfpView = findViewById(R.id.profileImage);
+        settingsImgBtn = findViewById(R.id.settingsButton);
     }
     public void initUser(){
         FirebaseUser fbUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -137,7 +137,77 @@ public class Profile extends BaseActivity {
         });
     }
 
+    private void initButtons(){
+        bioView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getSupportFragmentManager();
+                DialogAddBio dialog = new DialogAddBio();
+                dialog.show(fm, "Add Bio");
+            }
+        });
+
+        settingsImgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showSettingsMenu(v);
+            }
+        });
+    }
+
+    private void showSettingsMenu(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.settings_menu, popup.getMenu());
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                return handleMenuItemClick(item);
+            }
+        });
+        popup.show();
+    }
+
+    public boolean handleMenuItemClick(MenuItem item) {
+        int itemId = item.getItemId();
+
+        if (itemId == R.id.action_log_out){
+            Toast.makeText(this, "Log out Succeeded", Toast.LENGTH_SHORT).show();
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+            mAuth.signOut();
+
+            Intent intent = new Intent(Profile.this, LoginActivity.class);
+            startActivity(intent);
+        }
+
+        else if (itemId == R.id.action_change_password){
+            Toast.makeText(this, "Change Password", Toast.LENGTH_SHORT).show();
+
+            FragmentManager fm = getSupportFragmentManager();
+            DialogChangePassword dialog = new DialogChangePassword();
+            dialog.show(fm, "Change Username");
+        }
+
+        else if (itemId == R.id.action_change_username){
+            Toast.makeText(this, "Chane username", Toast.LENGTH_SHORT).show();
+            FragmentManager fm = getSupportFragmentManager();
+            DialogChangeUsername dialog = new DialogChangeUsername();
+            dialog.show(fm, "Change Username");
+        }
+
+        else if (itemId == R.id.about_us){
+            Toast.makeText(this, "About us", Toast.LENGTH_SHORT).show();
+        }
+        return true;
+    }
+
     public void saveProfilePhoto(Bitmap profileImage) {
         pfpView.setImageBitmap(profileImage);
+    }
+
+
+    @Override
+    public void saveBio(String description) {
+        bioView.setText(description);
     }
 }

@@ -27,11 +27,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <Toolbar
         android:id="@+id/imageNameLayoutProfile"
         android:layout_width="465dp"
         android:layout_height="89dp"
         android:layout_marginTop="-20dp"
+        android:background="@drawable/rectangle_leaderboard"
         android:contentDescription="@string/top_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/containerChangeUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/add_bio_background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/newUserNameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/white"
+        android:ems="14"
+        android:fontFamily="@font/anonymous_pro"
+        android:hint="@string/new_username"
+        android:inputType="text"
+        android:paddingBottom="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/containerChangeUsername"
+        app:layout_constraintTop_toTopOf="@+id/containerChangeUsername" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/newUserNameEditText">
+
+        <Button
+            android:id="@+id/cancelBtnChangeName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
+            android:backgroundTint="#80204b75"
+            android:contentDescription="@string/cancel"
+            android:fontFamily="@font/poppinsbold"
+            android:text="@string/cancel" />
+
+        <Button
+            android:id="@+id/confirmBtnChangeName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="#80204b75"
+            android:contentDescription="@string/confirm"
+            android:fontFamily="@font/poppinsbold"
+            android:text="@string/confirm" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
