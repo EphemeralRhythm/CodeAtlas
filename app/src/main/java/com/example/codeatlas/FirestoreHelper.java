@@ -3,10 +3,14 @@ package com.example.codeatlas;
 import android.adservices.topics.Topic;
 
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class FirestoreHelper {
@@ -129,6 +133,61 @@ public class FirestoreHelper {
                 });
     }
 
+    public void fetchUserInfo(String uid, UserCallback callback){
+        db.collection("users").document(uid)
+                .get().addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        DocumentSnapshot document = task.getResult();
+                        int hearts = Math.toIntExact(document.getLong("hearts"));
+                        int stars = Math.toIntExact(document.getLong("stars"));
+                        int diamonds = Math.toIntExact(document.getLong("diamonds"));
+                        String bio = document.contains("bio") ? document.getString("bio") : "";
+                        String username = document.getString("username");
+                        String email = document.getString("email");
+
+                        User user = new User();
+                        user.setId(uid);
+                        user.setUsername(username);
+                        user.setEmail(email);
+                        user.setBio(bio);
+
+                        user.setDiamonds(diamonds);
+                        user.setHearts(hearts);
+                        user.setStars(stars);
+
+                        callback.onCallback(user);
+                    }
+                });
+    }
+
+    public void fetchUserRank(String uid, UserProgressCallback callback) {
+        db.collection("users").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                List<User> users = new ArrayList<>();
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    Long starsLong = document.contains("stars") ? document.getLong("stars") : 0L;
+                    int stars = starsLong != null ? starsLong.intValue() : 0;
+                    String userId = document.getId();
+                    User user = new User();
+                    user.setId(userId);
+                    user.setStars(stars);
+                    users.add(user);
+                }
+
+                Collections.sort(users, Comparator.comparingLong(User::getStars).reversed());
+
+                int rank = 1;
+                for (User user : users) {
+                    if (user.getId().equals(uid)) {
+                        callback.onCallback(rank);
+                        return;
+                    }
+                    rank++;
+                }
+            }
+        });
+    }
+
     public interface FirestoreCallback {
         void onCallback(ArrayList<Track> tracks);
     }
@@ -146,5 +205,9 @@ public class FirestoreHelper {
 
     public interface LevelsCountCallback {
         void onCallback(int levels);
+    }
+
+    public interface UserCallback {
+        void onCallback(User user);
     }
 }

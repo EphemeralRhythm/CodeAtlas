@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0f4681"
-    android:paddingTop="20dp"
     tools:context=".QuizActivity">
 
 
@@ -17,8 +16,7 @@
         android:background="@color/transparent"
         android:contentDescription="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/nextButton"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/register_custom_rectangle" />
 
@@ -35,34 +33,21 @@
         app:layout_constraintStart_toStartOf="@+id/submitButton"
         app:layout_constraintTop_toTopOf="@+id/submitButton" />
 
-    <ImageButton
-        android:id="@+id/nextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:background="@color/transparent"
-        android:contentDescription="next"
-        app:layout_constraintBottom_toBottomOf="@+id/submitButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/submitButton"
-        app:srcCompat="@drawable/next_quiz" />
-
     <ScrollView
         android:id="@+id/scrollQuestion"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
         android:background="#000e1d"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/questionLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="20dp"
             android:textSize="19sp">
 
             <TextView
@@ -74,7 +59,7 @@
                 android:fontFamily="@font/poppinsmedium"
                 android:text="TextView"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="22sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -83,215 +68,97 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="17dp"
-        android:background="#000e1d"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:background="#001C39"
+        android:paddingStart="5dp"
+        android:paddingLeft="5dp"
         android:paddingTop="20dp"
-        android:paddingBottom="20dp"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/submitButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout4"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/scrollQuestion">
 
         <RadioGroup
             android:id="@+id/optionsRadioGroup"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.31"
-            app:layout_constraintStart_toStartOf="@+id/infoText"
-            app:layout_constraintTop_toBottomOf="@+id/infoText">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <RadioButton
                 android:id="@+id/optionOneRadioBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:background="@drawable/quiz_option_rectangle"
                 android:button="@color/transparent"
                 android:buttonTint="@color/white"
-                android:fontFamily="@font/anonymous_pro"
+                android:fontFamily="@font/poppinsmedium"
+                android:minHeight="70dp"
                 android:paddingStart="20sp"
                 android:paddingEnd="20sp"
                 android:text="Option 1"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
             <RadioButton
                 android:id="@+id/optionTwoRadioBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 android:background="@drawable/quiz_option_rectangle"
                 android:button="@color/transparent"
-                android:fontFamily="@font/anonymous_pro"
+                android:fontFamily="@font/poppinsmedium"
+                android:minHeight="70dp"
                 android:paddingStart="20sp"
                 android:paddingEnd="20sp"
                 android:text="Option 2"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
             <RadioButton
                 android:id="@+id/optionThreeRadioBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 android:background="@drawable/quiz_option_rectangle"
                 android:button="@color/transparent"
-                android:fontFamily="@font/anonymous_pro"
+                android:fontFamily="@font/poppinsmedium"
+                android:minHeight="70dp"
                 android:paddingStart="20sp"
                 android:paddingEnd="20sp"
                 android:text="Option 3"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
             <RadioButton
                 android:id="@+id/optionFourRdioBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/quiz_option_rectangle"
                 android:button="@color/transparent"
-                android:fontFamily="@font/anonymous_pro"
+                android:fontFamily="@font/poppinsmedium"
+                android:minHeight="70dp"
                 android:paddingStart="20sp"
                 android:paddingEnd="20sp"
                 android:text="Option 4"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
         </RadioGroup>
 
-        <TextView
-            android:id="@+id/infoText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:drawablePadding="16dp"
-            android:fontFamily="@font/anonymous_pro"
-            android:text="Tap the correct answer"
-            android:textColor="@color/white"
-            android:textSize="19sp"
-            app:drawableStartCompat="@drawable/information"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/livesImQuiz"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/quiz_layout_top_characteristics" />
-
-        <ImageView
-            android:id="@+id/rankImgQuiz"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/xpImgQuiz"
-            app:layout_constraintStart_toEndOf="@+id/livesImQuiz"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/quiz_layout_top_characteristics" />
-
-        <ImageView
-            android:id="@+id/xpImgQuiz"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/quiz_layout_top_characteristics" />
-
-        <TextView
-            android:id="@+id/livesText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="25dp"
-            android:text="5"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            app:layout_constraintBottom_toBottomOf="@+id/livesImQuiz"
-            app:layout_constraintEnd_toEndOf="@+id/livesImQuiz"
-            app:layout_constraintTop_toTopOf="@+id/livesImQuiz" />
-
-        <ImageView
-            android:id="@+id/liveImg"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/livesImQuiz"
-            app:layout_constraintStart_toStartOf="@+id/livesImQuiz"
-            app:layout_constraintTop_toTopOf="@+id/livesImQuiz"
-            app:srcCompat="@drawable/heart_full" />
-
-        <TextView
-            android:id="@+id/rankText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="25dp"
-            android:text="4"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            app:layout_constraintBottom_toBottomOf="@+id/rankImgQuiz"
-            app:layout_constraintEnd_toEndOf="@+id/rankImgQuiz"
-            app:layout_constraintTop_toTopOf="@+id/rankImgQuiz" />
-
-        <ImageView
-            android:id="@+id/rankImg"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-
-            android:layout_marginStart="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/rankImgQuiz"
-            app:layout_constraintTop_toTopOf="@+id/rankImgQuiz"
-            app:srcCompat="@drawable/trophy" />
-
-        <TextView
-            android:id="@+id/xpText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="820"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/xpImgQuiz"
-            app:layout_constraintTop_toTopOf="@+id/xpImgQuiz" />
-
-        <ImageView
-            android:id="@+id/starImg"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginStart="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/xpImgQuiz"
-            app:layout_constraintTop_toTopOf="@+id/xpImgQuiz"
-            app:srcCompat="@drawable/star_profile" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

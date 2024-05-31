@@ -33,7 +33,7 @@ import java.util.Map;
 
 import io.noties.markwon.Markwon;
 
-public class ForumPostActivity extends AppCompatActivity {
+public class ForumPostActivity extends BaseActivity {
 
     TextView postTitle, postContent, postAuthor, threadCategory, postDate;
     ArrayList<ForumPost> posts;
@@ -45,6 +45,7 @@ public class ForumPostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forum_post);
+        setupBackButton();
 
         id = getIntent().getExtras().getString("id", "An");
 
