@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 public class LessonAdapter extends FragmentStateAdapter {
     private ArrayList<Page> allPages, pages;
     public Context context;
+    public FragmentManager fragmentManager;
     public ViewPager2 viewPager;
 
     public LessonAdapter(@NonNull FragmentActivity fragmentActivity) {
@@ -26,7 +28,7 @@ public class LessonAdapter extends FragmentStateAdapter {
         Page page = pages.get(position);
 
         if(page.getType() == Page.QUIZ)
-            return new LessonMCQFragment(viewPager, context, page);
+            return new LessonMCQFragment(viewPager, context, page, fragmentManager);
         else
             return new LessonInfoFragment(viewPager, context, page);
     }

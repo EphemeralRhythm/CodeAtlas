@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -74,7 +75,7 @@ public class DialogLosingLives extends DialogFragment {
                     long minutes = seconds / 60;
                     seconds = seconds % 60;
 
-                    timeView.setText("00:" + minutes + ":" + seconds);
+                    timeView.setText(String.format("00:%02d:%02d", minutes, seconds));
                 }
 
                 public void onFinish() {
@@ -87,13 +88,26 @@ public class DialogLosingLives extends DialogFragment {
     }
 
     public void updateLives(){
-        lives = prefs.getLong("hearts", 0);
+        if(lives == 5)
+            dismiss();
+
+        lives++;
         if(lives != 5){
+            for(int i = 0; i < 5 - lives; i++){
+                ImageView img = (ImageView) livesLayout.getChildAt(i);
+                img.setImageResource(R.drawable.heart_losed);
+            }
+
             startCountdownTimer();
         }
-        for(int i = 0; i < 5 - lives; i++){
-            ImageView img = (ImageView) livesLayout.getChildAt(i);
-            img.setImageResource(R.drawable.heart_losed);
+        else {
+            dismiss();
         }
+    }
+
+    @Override
+    public void onDismiss(@NonNull DialogInterface dialog) {
+        Intent intent = new Intent(getContext(), RoadmapActivity.class);
+        startActivity(intent);
     }
 }
