@@ -17,8 +17,7 @@ public class EventsActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
-        Navbar.initNavBar(EventsActivity.this);
-        ButtonsAlpha.resetButtonsAlpha(EventsActivity.this);
+
         setupBackButton();
         fetchContests();
     }

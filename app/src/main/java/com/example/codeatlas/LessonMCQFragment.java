@@ -134,6 +134,11 @@ public class LessonMCQFragment extends Fragment {
                 String answer = checked.getText().toString();
                 marker.setVisibility(View.VISIBLE);
 
+                LessonActivity activity = (LessonActivity) viewPager.getTag();
+
+                if(!answered)
+                    activity.totalAnswers++;
+
                 buttonText.setText("Continue");
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -142,6 +147,7 @@ public class LessonMCQFragment extends Fragment {
                         adapter.flipPage();
                     }
                 });
+
 
                 if(!answer.equals(page.getCorrectAnswer())){
                     int defaultColor = getResources().getColor(R.color.quiz_button_wrong);
@@ -158,7 +164,8 @@ public class LessonMCQFragment extends Fragment {
                                 int hearts = Math.toIntExact((Long) mp.get("hearts"));
                                 hearts--;
 
-                                TextView heartsView = (TextView) viewPager.getTag();
+
+                                TextView heartsView = activity.heartTextView;
                                 heartsView.setText(String.valueOf(hearts));
 
                                 if(hearts == 0){
@@ -176,9 +183,8 @@ public class LessonMCQFragment extends Fragment {
                 }
                 else {
                     // answeredCorrectly = true;
-                    if(!answered)
-                        correctAnswers++;
                     answered = true;
+                    activity.correctAnswers++;
 
                     int greenColor = getResources().getColor(R.color.quiz_button_correct);
                     ColorStateList colorStateList = ColorStateList.valueOf(greenColor);

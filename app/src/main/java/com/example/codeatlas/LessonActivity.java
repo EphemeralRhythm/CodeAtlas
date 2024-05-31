@@ -2,6 +2,7 @@ package com.example.codeatlas;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -26,7 +27,8 @@ public class LessonActivity extends AppCompatActivity {
     FirebaseFirestore db;
     Level level = new Level();
     LessonAdapter adapter;
-    TextView heartTextView, rankTextView, starsTextView;
+    public TextView heartTextView, rankTextView, starsTextView;
+    public int correctAnswers, totalAnswers;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +54,7 @@ public class LessonActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager);
 
         heartTextView = findViewById(R.id.livesText);
-        viewPager.setTag(heartTextView);
+        viewPager.setTag(this);
 
         rankTextView = findViewById(R.id.rankText);
         starsTextView = findViewById(R.id.xpText);
