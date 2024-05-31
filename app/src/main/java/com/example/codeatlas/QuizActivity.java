@@ -41,6 +41,7 @@ public class QuizActivity extends AppCompatActivity implements LevelInterface{
     FirebaseFirestore db;
     FirebaseAuth mAuth;
     TextView heartsView;
+    View marker;
     boolean answeredCorrectly = false;
     int hearts;
 
@@ -188,4 +189,3 @@ public class QuizActivity extends AppCompatActivity implements LevelInterface{
         });
     }
 }
-
