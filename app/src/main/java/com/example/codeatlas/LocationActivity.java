@@ -44,7 +44,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class LocationActivity extends BaseActivity implements LocationListener {
+public class LocationActivity extends BaseActivity implements android.location.LocationListener {
 
     final int PERMISSION_REQUEST_LOCATION = 101;
     Button skipBtn;
@@ -68,14 +68,6 @@ public class LocationActivity extends BaseActivity implements LocationListener {
         skipBtn = findViewById(R.id.skipBtn);
         useCurrentLocationButton = findViewById(R.id.useLocationBtn);
         locationEditText = findViewById(R.id.editLocationText);
-        skipBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LocationActivity.this, RoadmapActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            }
-        });
     }
 
     private void initButtons() {
@@ -83,6 +75,15 @@ public class LocationActivity extends BaseActivity implements LocationListener {
             @Override
             public void onClick(View v) {
                 requestLocationPermission();
+            }
+        });
+
+        skipBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LocationActivity.this, RoadmapActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         });
     }
@@ -117,7 +118,7 @@ public class LocationActivity extends BaseActivity implements LocationListener {
         try {
             locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-                    5000L, 10F, (android.location.LocationListener) this);
+                    5000L, 10F, this);
 
         } catch (SecurityException e) {
             Toast.makeText(this, "Can't get Location", Toast.LENGTH_SHORT).show();
@@ -148,158 +149,9 @@ public class LocationActivity extends BaseActivity implements LocationListener {
 
     private void saveLoCationIntoFirebase() {
         // save location
+
+        Intent intent = new Intent(LocationActivity.this, RoadmapActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
-
-    /*
-
-    protected void initMap(){
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-        createLocationRequest();
-        createLocationCallback();
-    }
-
-    private void createLocationRequest(){
-        locationRequest = new LocationRequest.Builder(
-                Priority.PRIORITY_BALANCED_POWER_ACCURACY, 10000)
-                .setMinUpdateIntervalMillis(5000)
-                .build();
-    }
-
-    private void createLocationCallback(){
-        locationCallback = new LocationCallback() {
-            @Override
-            public void onLocationResult(@NonNull LocationResult locationResult) {
-                super.onLocationResult(locationResult);
-                if (locationResult == null)
-                    return;
-                for (Location location : locationResult.getLocations()){
-                    currentLocation = location;
-                    Toast.makeText(LocationActivity.this, "Lat: " + location.getLatitude() + " Long: " + location.getLongitude() + "Acc: " + location.getAccuracy(), Toast.LENGTH_SHORT).show();
-                    updateMapWithCurrentLocation(location);
-                }
-            }
-        };
-    }
-
-    private void updateMapWithCurrentLocation(Location location) {
-        LatLng currentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
-        googleMap.clear();
-        googleMap.addMarker(new MarkerOptions().position(currentLatLng).title("You are here"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15));
-    }
-
-    private void getCoordinatesFromSensor(){
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-            startLocationUpdates();
-        }
-        else {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)){
-                Snackbar.make(findViewById(R.id.activity_location),
-                        "Code Atlas app requires this permission to locate your position",
-                        Snackbar.LENGTH_INDEFINITE)
-                        .setAction("OK", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                ActivityCompat.requestPermissions(LocationActivity.this,
-                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
-                                        PERMISSION_REQUEST_LOCATION);
-                            }
-                        });
-            }
-            else {
-                ActivityCompat.requestPermissions(LocationActivity.this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
-                        PERMISSION_REQUEST_LOCATION);
-            }
-        }
-
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (grantResults.length > 0 &&
-                grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            startLocationUpdates();
-        } else {
-            Toast.makeText(this,
-                    "Contacts will not locate your contacts",
-                    Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private void startLocationUpdates(){
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION) ==
-                PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(this,
-                        Manifest.permission.ACCESS_COARSE_LOCATION) ==
-                        PackageManager.PERMISSION_GRANTED) {
-            fusedLocationClient.requestLocationUpdates(
-                    locationRequest, locationCallback, null);
-            googleMap.setMyLocationEnabled(true);
-        }
-    }
-
-    private void stopLocationUpdates() {
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION) ==
-                PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(this,
-                        Manifest.permission.ACCESS_COARSE_LOCATION) ==
-                        PackageManager.PERMISSION_GRANTED)
-            fusedLocationClient.removeLocationUpdates(locationCallback);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        try {
-            stopLocationUpdates();
-        }
-        catch (Exception ignored) {
-        }
-    }
-
-    private void getCoordinatesFromLocationName(String locationName){
-        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-        try {
-            List<Address> addresses = geocoder.getFromLocationName(locationName, 1);
-            if (addresses != null && !addresses.isEmpty()) {
-                Address address = addresses.get(0);
-                LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                googleMap.addMarker(new MarkerOptions().position(latLng).title(locationName));
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
-            }
-            else {
-                Toast.makeText(this, "Location not found", Toast.LENGTH_SHORT).show();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "Unable to get location from name", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    protected void initButtons(){
-        useCurrentLocationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getCoordinatesFromSensor();
-            }
-        });
-        setLocationOnMapBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String location = locationEditText.getText().toString();
-                if (!TextUtils.isEmpty(location)) {
-                    getCoordinatesFromLocationName(location);
-                } else {
-                    Toast.makeText(LocationActivity.this, "Please enter a location", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-*/
 }

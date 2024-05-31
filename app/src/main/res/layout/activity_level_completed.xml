@@ -8,6 +8,16 @@
     android:background="@color/screen_color"
     tools:context=".LevelCompletedActivity">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/perfect_animation_icon"
+        android:layout_width="288dp"
+        android:layout_height="294dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timeText"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/perfect_animated_icon" />
     <ImageButton
         android:id="@+id/continueButton"
         android:layout_width="0dp"
