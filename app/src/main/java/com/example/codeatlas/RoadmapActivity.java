@@ -81,6 +81,8 @@ public class RoadmapActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         Navbar.initNavBar(RoadmapActivity.this);
+        ButtonsAlpha.resetButtonsAlpha(this);
+        ButtonsAlpha.roadmap.setAlpha(1f);
 
         initLayoutComponents();
         getUserProgress();
