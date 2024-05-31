@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -51,11 +52,19 @@ public class LessonActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager);
 
         heartTextView = findViewById(R.id.livesText);
+        viewPager.setTag(heartTextView);
+
         rankTextView = findViewById(R.id.rankText);
         starsTextView = findViewById(R.id.xpText);
     }
 
     public void updateUserInfo(User user){
+        if(user.getHearts() == 0){
+            DialogLosingLives dialog = new DialogLosingLives();
+            FragmentManager fm = getSupportFragmentManager();
+
+            dialog.show(fm, "Ran out of lives");
+        }
         heartTextView.setText(String.valueOf(user.getHearts()));
         starsTextView.setText(String.valueOf(user.getStars()));
     }
@@ -101,6 +110,7 @@ public class LessonActivity extends AppCompatActivity {
                     level.pages.add(page);
 
                     adapter = new LessonAdapter(this);
+                    adapter.fragmentManager = getSupportFragmentManager();
                     adapter.viewPager = viewPager;
                     adapter.context = this;
                     adapter.setAllPages(level.pages);

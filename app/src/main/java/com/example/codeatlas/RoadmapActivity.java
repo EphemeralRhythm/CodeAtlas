@@ -40,6 +40,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public class RoadmapActivity extends AppCompatActivity {
@@ -238,6 +239,23 @@ public class RoadmapActivity extends AppCompatActivity {
 
         WorkManager.getInstance(this)
                 .enqueueUniquePeriodicWork("Lives Worker", ExistingPeriodicWorkPolicy.KEEP, periodicWorkRequest);
+        observeWorkCompletion(periodicWorkRequest.getId());
+    }
+
+    private void observeWorkCompletion(UUID workRequestId) {
+        WorkManager.getInstance(this).getWorkInfoByIdLiveData(workRequestId)
+                .observe(this, new Observer<WorkInfo>() {
+                    @Override
+                    public void onChanged(WorkInfo workInfo) {
+                        if (workInfo != null && workInfo.getState() == WorkInfo.State.SUCCEEDED) {
+                            onWorkCompleted();
+                        }
+                    }
+                });
+    }
+
+    private void onWorkCompleted() {
+        initUI();
     }
 
     public void updateUserProgress(){
