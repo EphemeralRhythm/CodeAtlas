@@ -192,8 +192,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -266,21 +265,11 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="80dp"
                 android:layout_marginEnd="40dp"
                 android:isScrollContainer="false"
                 android:nestedScrollingEnabled="false" />
 
-            <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/events_image"/>
-
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/events_image" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

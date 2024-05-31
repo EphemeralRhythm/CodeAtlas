@@ -28,10 +28,9 @@ public class LevelCompletedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_level_completed);
 
         lottieAnimationView = findViewById(R.id.perfect_animation_icon);
-        lottieAnimationView.setAnimation(R.raw.perfect_animated_icon);
+        lottieAnimationView.setAnimation(R.raw.coding_animation_trophy);
         lottieAnimationView.playAnimation();
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+       ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;

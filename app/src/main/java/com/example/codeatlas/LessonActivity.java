@@ -20,6 +20,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Map;
 
 public class LessonActivity extends AppCompatActivity {
@@ -100,17 +102,17 @@ public class LessonActivity extends AppCompatActivity {
                 for (QueryDocumentSnapshot pageDoc : task.getResult()) {
                     int pageNumber = Integer.parseInt(pageDoc.getId());
 
-                    Map<String, Object> mp =  pageDoc.getData();
+                    Map<String, Object> mp = pageDoc.getData();
                     Page page = new Page();
                     page.setIndex(pageNumber);
                     page.setType(Math.toIntExact((Long) mp.get("type")));
                     page.setContent((String) mp.get("content"));
 
-                    if(page.getType() == Page.QUIZ){
+                    if (page.getType() == Page.QUIZ) {
                         String[] optionsList = {"option1", "option2", "option3", "option4"};
                         page.choices = new ArrayList<>();
 
-                        for(String option: optionsList){
+                        for (String option : optionsList) {
                             page.choices.add((String) mp.get(option));
                         }
 
@@ -118,19 +120,27 @@ public class LessonActivity extends AppCompatActivity {
                     }
 
                     level.pages.add(page);
-
-                    adapter = new LessonAdapter(this);
-                    adapter.fragmentManager = getSupportFragmentManager();
-                    adapter.viewPager = viewPager;
-                    adapter.context = this;
-                    adapter.setAllPages(level.pages);
-
-                    ArrayList<Page> curPages = new ArrayList<>();
-                    curPages.add(level.pages.get(0));
-                    adapter.setPages(curPages);
-
-                    viewPager.setAdapter(adapter);
                 }
+
+                Collections.sort(level.pages, new Comparator<Page>() {
+                    @Override
+                    public int compare(Page p1, Page p2) {
+                        return Integer.compare(p1.getIndex(), p2.getIndex());
+                    }
+                });
+
+                adapter = new LessonAdapter(this);
+                adapter.fragmentManager = getSupportFragmentManager();
+                adapter.viewPager = viewPager;
+                adapter.context = this;
+                adapter.setAllPages(level.pages);
+
+                ArrayList<Page> curPages = new ArrayList<>();
+                curPages.add(level.pages.get(0));
+                adapter.setPages(curPages);
+
+                viewPager.setAdapter(adapter);
+
             }
         });
     }
