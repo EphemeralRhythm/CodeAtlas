@@ -40,6 +40,8 @@ public class LeaderboardActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard);
         Navbar.initNavBar(LeaderboardActivity.this);
+        ButtonsAlpha.resetButtonsAlpha(this);
+        ButtonsAlpha.leaderboard.setAlpha(1f);
 
         db = FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();

@@ -55,6 +55,8 @@ public class ForumsActivity extends BaseActivity {
         db = FirebaseFirestore.getInstance();
         fetchPosts();
         Navbar.initNavBar(this);
+        ButtonsAlpha.resetButtonsAlpha(this);
+        ButtonsAlpha.community.setAlpha(1f);
     }
 
     private void fetchPosts() {

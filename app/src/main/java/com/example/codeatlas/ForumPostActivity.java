@@ -56,6 +56,8 @@ public class ForumPostActivity extends BaseActivity {
         fetchPost(id);
         fetchPosts(id);
         Navbar.initNavBar(this);
+        ButtonsAlpha.resetButtonsAlpha(this);
+        ButtonsAlpha.community.setAlpha(1f);
     }
 
     private void initComponents(){

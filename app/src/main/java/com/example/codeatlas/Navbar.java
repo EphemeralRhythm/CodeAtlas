@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class Navbar {
     public static void initNavBar(Activity activity){
         ImageButton roadmap, articles, leaderboard, community, profile;
+
         roadmap = activity.findViewById(R.id.roadmapNavIcon);
         articles = activity.findViewById(R.id.articleNavIcon);
         leaderboard = activity.findViewById(R.id.trophyNavIcon);
@@ -21,6 +22,7 @@ public class Navbar {
         leaderboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                leaderboard.setAlpha(1f);
                 Intent intent = new Intent(activity, LeaderboardActivity.class);
                 activity.startActivity(intent);
             }
@@ -28,6 +30,7 @@ public class Navbar {
         articles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                articles.setAlpha(1f);
                 Intent intent = new Intent(activity, ArticlesActivity.class);
                 activity.startActivity(intent);
             }
@@ -36,6 +39,7 @@ public class Navbar {
         roadmap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                roadmap.setAlpha(1f);
                 Intent intent = new Intent(activity, RoadmapActivity.class);
                 activity.startActivity(intent);
             }
@@ -44,6 +48,7 @@ public class Navbar {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                profile.setAlpha(1f);
                 Intent intent = new Intent(activity, Profile.class);
                 activity.startActivity(intent);
             }
@@ -52,9 +57,12 @@ public class Navbar {
         community.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                community.setAlpha(1f);
                 Intent intent = new Intent(activity, ForumsActivity.class);
                 activity.startActivity(intent);
             }
         });
     }
+
+
 }

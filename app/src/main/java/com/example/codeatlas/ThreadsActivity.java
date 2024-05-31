@@ -66,6 +66,8 @@ public class ThreadsActivity extends BaseActivity {
 
         initButton();
         Navbar.initNavBar(this);
+        ButtonsAlpha.resetButtonsAlpha(this);
+        ButtonsAlpha.community.setAlpha(1f);
         fetchPosts(threadId);
     }
 

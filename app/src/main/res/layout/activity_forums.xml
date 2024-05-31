@@ -52,7 +52,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageNameLayoutForums"
         android:autofillHints="" />
 
-    <ImageView
+    <Toolbar
         android:id="@+id/imageNameLayoutForums"
         android:layout_width="465dp"
         android:layout_height="89dp"
@@ -60,7 +60,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/rectangle_leaderboard"
+        android:background="@drawable/rectangle_leaderboard"
         android:contentDescription="@string/top_layout" />
 
     <ImageButton

@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <ImageView
+    <Toolbar
         android:id="@+id/imageNameLayoutThreads"
         android:layout_width="465dp"
         android:layout_height="89dp"
@@ -25,7 +25,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/rectangle_leaderboard"
-        android:contentDescription="@string/top_layout" />
+        android:background="@drawable/rectangle_leaderboard" />
 
     <ImageButton
         android:id="@+id/backButton"

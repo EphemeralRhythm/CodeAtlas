@@ -55,6 +55,8 @@ public class Profile extends BaseActivity implements DialogAddBio.SaveDescriptio
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Navbar.initNavBar(Profile.this);
+        ButtonsAlpha.resetButtonsAlpha(this);
+        ButtonsAlpha.profile.setAlpha(1f);
         setupBackButton();
 
         initLayoutComponents();
