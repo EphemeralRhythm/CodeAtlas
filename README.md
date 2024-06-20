@@ -8,7 +8,7 @@ Code Atlas is built using java native and Firebase for the application's backend
 
 ### User Authentication
 
-Naturally, the application features user auth using the firebase authentication system.
+The application features user auth using the firebase authentication system.
 
 ![Login](./screenshots/login.png)
 ![Register](./screenshots/register.png)
